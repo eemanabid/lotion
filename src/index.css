@@ -70,7 +70,7 @@ button {
   color: black;
 }
 button:hover {
-  color: rgb(71, 46, 71);
+  color: rgb(231, 152, 166);
 }
 
 .App {
@@ -135,7 +135,7 @@ button:hover {
 }
 .app-sidebar-note.active,
 .app-sidebar-note.active small {
-  background: rgb(71, 46, 71);
+  background: rgb(231, 152, 166);
   color: white;
 }
 
