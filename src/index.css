@@ -15,6 +15,33 @@ a {
   text-decoration: none;
 }
 
+#main-title {
+  border-bottom: 1px solid lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60px;
+}
+
+#lotion-title{
+  border-bottom: 1px solid lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60px;
+  --tt-color: black;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 0.4rem 0 0.4rem 0;
+  text-align: center;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -40,10 +67,10 @@ button {
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  color: #08c;
+  color: black;
 }
 button:hover {
-  color: #04c;
+  color: rgb(71, 46, 71);
 }
 
 .App {
@@ -54,17 +81,30 @@ button:hover {
 
 .app-sidebar {
   width: 30%;
-  height: 100vh;
-  border-right: 1px solid #ddd;
+  height: 20%;
+  border-right: solid 1px gainsboro;
 }
 
 .app-sidebar-header {
   display: flex;
   justify-content: space-between;
-  padding: 25px;
+  padding: 15px;
+  border-bottom: solid 1px gainsboro;
 }
+/*
+.custom-border{
+  border-right: solid 1px gainsboro;
+  line-height: 10px;
+}*/
+
 .app-sidebar-header h1 {
-  margin: 0;
+  margin-top: 70px;
+  font-size: 25px;
+}
+
+.app-sidebar-header button {
+  margin-top: 65px;
+  font-size: 25px;
 }
 
 .app-sidebar-notes {
@@ -95,15 +135,19 @@ button:hover {
 }
 .app-sidebar-note.active,
 .app-sidebar-note.active small {
-  background: #08c;
+  background: rgb(71, 46, 71);
   color: white;
 }
 
 /* NOTE EDITOR/PREVIEW (MAIN) STYLES */
 
+textarea:placeholder-shown {
+  font-style: italic;
+}
+
 .app-main {
   width: 70%;
-  height: 100vh;
+  margin-top: 60px;
 }
 .app-main-note-edit,
 .app-main-note-preview {
@@ -153,8 +197,3 @@ textarea {
   margin: 0;
 }
 
-.markdown-preview {
-  padding: 0 25px 25px 25px;
-  font-size: 1rem;
-  line-height: 2rem;
-}
