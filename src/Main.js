@@ -1,5 +1,25 @@
+import ReactQuill from "react-quill";
+
 function Main({activeNote, onUpdateNote}){
-    const onEditField = (key, value) => {
+
+    function debounce(a,b,c){
+        var d,e;
+        return function(){
+          function h(){
+            d=null;
+            c||(e=a.apply(f,g));
+          }
+          var f=this,g=arguments;
+          return (clearTimeout(d),d=setTimeout(h,b),c&&!d&&(e=a.apply(f,g)),e)
+        }
+      }
+      
+      function removeHTMLTags (str) {
+        return str.replace(/<[^>]*>?/gm, '');
+      };
+
+
+    const onEditField = async (key, value) => {
         onUpdateNote({
             ...activeNote,
             [key]: value,
@@ -11,10 +31,17 @@ function Main({activeNote, onUpdateNote}){
         return <div className="no-active-note">Select a note, or create a new one.</div>
     }
 
+
     return <div className="app-main">
         <div className="app-main-note-edit">
             <input type="text" id="title" value={activeNote.title} onChange={(e) => onEditField("title", e.target.value)} autoFocus/>
-            <textarea id="body" placeholder="Your Note Here" value={activeNote.body} onChange={(e) => onEditField("body", e.target.value)}/>
+            <div className= "editorContainer">
+                <ReactQuill id="body" placeholder="Your Note Here" 
+                    value={activeNote.body} 
+                    onChange={(content) => onEditField("body", content)}>
+                </ReactQuill>
+            </div>
+            
         </div>
 
         <div className="app-main-note-preview">

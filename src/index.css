@@ -120,7 +120,7 @@ button:hover {
   justify-content: space-between;
 }
 .app-sidebar-note button {
-  color: crimson;
+  color: black;
 }
 .app-sidebar-note p {
   margin: 10px 0;
@@ -197,3 +197,13 @@ textarea {
   margin: 0;
 }
 
+.editorContainer {
+  height: 100%;
+}
+/*
+.quill {
+  height: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 300px);
+  float: left;
+}*/
