@@ -2,6 +2,7 @@ import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 function App(){
   //Getter = notes, Setter = setNotes
@@ -31,12 +32,11 @@ function App(){
 
       return note;
     });
-
     setNotes(updatedNotesArray);
   };
 
   const onDeleteNote = (idToDelete) => {
-    setNotes(notes.filter((note) => note.id != idToDelete));
+    setNotes(notes.filter((note) => note.id !== idToDelete));
   };
 
   const askDelete = (idToDelete) => {
@@ -47,8 +47,10 @@ function App(){
   }
 
   const getActiveNote = () => {
-    return notes.find(({ id }) => id === activeNote);
-  };
+    return(notes.find(( note ) => note.id === activeNote));
+  }
+  
+  
 
   return <div className = "App">
     <header id = "lotion-title">
@@ -63,7 +65,13 @@ function App(){
       activeNote={activeNote}
       setActiveNote={setActiveNote}
     />
-    <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+    <Main 
+      activeNote={getActiveNote()} 
+      onUpdateNote={onUpdateNote} 
+      notes={notes}
+      setNotes={setNotes}
+      askDelete={askDelete}
+    />
   </div>
 
 }

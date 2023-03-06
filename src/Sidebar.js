@@ -1,4 +1,24 @@
 function Sidebar({notes, onAddNote, askDelete, activeNote, setActiveNote}){
+    const handleNoteClick = (note) => {
+        setActiveNote(note.id);
+      };
+
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+    
+      const formatDate = (when) => {
+        const formatted = new Date(when).toLocaleString("en-US", options);
+        if (formatted === "Invalid Date") {
+          return "";
+        }
+        return formatted;
+      };
+
     return <div className="app-sidebar">
         <div className="app-sidebar-header">
             <h1>Notes</h1>
@@ -7,19 +27,15 @@ function Sidebar({notes, onAddNote, askDelete, activeNote, setActiveNote}){
 
         <div className="app-sidebar-notes">
             {notes.map((note) => (
-              <div className={`app-sidebar-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
+              <div key={note.id} className={`app-sidebar-note ${note.id === activeNote && "active"}`} onClick={() => handleNoteClick(note)}>
               <div className="sidebar-note-title">
                   <strong>{note.title}</strong>
-                  <button onClick={() => askDelete(note.id)}>Delete</button>
               </div>
 
-              <p>{note.body && note.body.substr(0, 100) + "..."}</p>
+              <p>{note.body.substr(0, 50) && note.body.replace(/<[^>]*>?/gm, '').substr(0, 50) + "..."}</p>
 
               <small className="note-meta">
-                  {new Date(note.lastModified).toLocaleDateString("en-CA", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {formatDate(note.lastModified)}
               </small>
           </div>          
             ))}

@@ -1,54 +1,79 @@
 import ReactQuill from "react-quill";
+import { useEffect, useState } from "react";
 
-function Main({activeNote, onUpdateNote}){
+function Main({ activeNote, onUpdateNote, notes, setNotes, askDelete }) {
 
-    function debounce(a,b,c){
-        var d,e;
-        return function(){
-          function h(){
-            d=null;
-            c||(e=a.apply(f,g));
-          }
-          var f=this,g=arguments;
-          return (clearTimeout(d),d=setTimeout(h,b),c&&!d&&(e=a.apply(f,g)),e)
-        }
-      }
-      
-      function removeHTMLTags (str) {
-        return str.replace(/<[^>]*>?/gm, '');
-      };
+  const onEditBody = async (key, value) => {
+    onUpdateNote({
+      ...activeNote,
+      [key]: value,
+      lastModified: Date.now(),
+    });
+  };
 
+  const onEditField = async (key, value) => {
+    onUpdateNote({
+      ...activeNote,
+      [key]: value,
+      lastModified: Date.now(),
+    });
+  };
 
-    const onEditField = async (key, value) => {
-        onUpdateNote({
-            ...activeNote,
-            [key]: value,
-            lastModified: Date.now(),
-        });
-    };
+  const saveNote = () => {
+    const updatedNotes = notes.map((note) =>
+      note.id === activeNote.id ? activeNote : note
+    );
+    setNotes(updatedNotes);
+  };
 
-    if(!activeNote) {
-        return <div className="no-active-note">Select a note, or create a new one.</div>
+  if (!activeNote) {
+    return <div className="no-active-note">Select a note, or create a new one.</div>;
+  }
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+};
+
+const formatDate = (when) => {
+    const formatted = new Date(when).toLocaleString("en-US", options);
+    if (formatted === "Invalid Date") {
+        return "";
     }
+    return formatted;
+};
 
-
-    return <div className="app-main">
-        <div className="app-main-note-edit">
-            <input type="text" id="title" value={activeNote.title} onChange={(e) => onEditField("title", e.target.value)} autoFocus/>
-            <div className= "editorContainer">
-                <ReactQuill id="body" placeholder="Your Note Here" 
-                    value={activeNote.body} 
-                    onChange={(content) => onEditField("body", content)}>
-                </ReactQuill>
-            </div>
-            
+  return (
+    <div className="app-main">
+      <div className="app-main-note-edit">
+        <input
+          type="text"
+          id="title"
+          value={activeNote.title}
+          onChange={(e) => onEditField("title", e.target.value)}
+          autoFocus
+        />
+        <small className="time-and-calendar">
+            <input type="datetime-local" defaultValue={new Date(activeNote.lastModified - 25200000)
+                  .toISOString()
+                  .slice(0, 19)} onChange={(e) => onEditField("lastModified", e.target.value)} />
+        </small>
+        <button className="delete" onClick={() => {askDelete(activeNote.id)}}>Delete</button>
+        <button className="save" onClick={saveNote}>Save</button>
+        <div className="editorContainer">
+          <ReactQuill
+            id="body"
+            placeholder="Your Note Here"
+            value={activeNote.body}
+            onChange={(content) => onEditBody("body", content)}
+          ></ReactQuill>
         </div>
-
-        <div className="app-main-note-preview">
-            <h1 className="preview-title">{activeNote.title}</h1>
-            <div className="markdown-preview">{activeNote.body}</div>
-        </div>
-    </div>
+      </div>
+      </div>
+  );
 }
 
 export default Main;
