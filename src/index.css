@@ -46,7 +46,7 @@ a {
   box-sizing: border-box;
 }
 
-/* GLOBAL STYLES */
+
 
 body,
 .App {
@@ -77,7 +77,7 @@ button:hover {
   display: flex;
 }
 
-/* SIDEBAR STYLES */
+
 
 .app-sidebar {
   width: 30%;
@@ -93,11 +93,7 @@ button:hover {
   padding: 15px;
   border-bottom: solid 1px gainsboro;
 }
-/*
-.custom-border{
-  border-right: solid 1px gainsboro;
-  line-height: 10px;
-}*/
+
 
 .app-sidebar-header h1 {
   margin-top: 70px;
@@ -141,7 +137,6 @@ button:hover {
   color: white;
 }
 
-/* NOTE EDITOR/PREVIEW (MAIN) STYLES */
 
 .app-main {
   width: 70%;
@@ -160,7 +155,6 @@ button:hover {
   color: #999;
 }
 
-/* Editing */
 .app-main-note-edit {
   padding: 0px;
 }
