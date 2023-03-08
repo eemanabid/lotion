@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, React } from "react";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Route, BrowserRouter, Navigate, Routes } from "react-router-dom";
+
 
 function App() {
 
@@ -23,8 +24,9 @@ function App() {
     localStorage.removeItem(activeNote.id);
     setNoteList(newNoteList);
     setActiveNote(newNoteList[0].id);
-    navigate(`/notes/${newNoteList[0].id}`);
+    navigate(`/notes/${newNoteList[0].id}/edit`);
   };
+  
 
   const askDelete = (idToDelete) => {
     const answer = window.confirm("Are you sure?");
@@ -61,6 +63,7 @@ function App() {
   }, [noteList]);
 
   const navigate = useNavigate();
+  
 
   return (
     <>
@@ -70,7 +73,6 @@ function App() {
         <h1>Lotion</h1>
         <p>Like Notion, but worse.</p>
       </header>
-      
       
       <div id="middle">
         {isOpen && (<Sidebar
@@ -87,7 +89,6 @@ function App() {
             note.id === activeNote && (
               <Main
                 note={note}
-                noteList={noteList}
                 askDelete={askDelete}
                 getActiveNote={getActiveNote}
                 saveNote={saveNote}
@@ -97,6 +98,7 @@ function App() {
               ></Main>
             )
         )}
+        
       </div>
       </div>
       </>

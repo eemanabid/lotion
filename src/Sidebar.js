@@ -24,11 +24,6 @@ function Sidebar({noteList, addNote, activeNote, setActiveNote, newNoteAdded, is
     minute: "numeric",
   };
 
-  const getPreview = (body) => {
-    const text = body.replace(/<[^>]*>?/gm, '');
-    return text.length > 50 ? `${text.substr(0, 50)}...` : text;
-  };
-
   const formatDate = (when) => {
     const formatted = new Date(when).toLocaleString("en-US", options);
     if (formatted === "Invalid Date") {
@@ -37,8 +32,9 @@ function Sidebar({noteList, addNote, activeNote, setActiveNote, newNoteAdded, is
     return formatted;
   };
 
-  if (noteList.length == 0) {
-    return (
+  if(!activeNote && noteList.length === 0){
+    return(
+    <Link to={`/notes`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="app-sidebar">
         <div className="app-sidebar-header">
             <h1>Notes</h1>
@@ -46,6 +42,22 @@ function Sidebar({noteList, addNote, activeNote, setActiveNote, newNoteAdded, is
         </div>
         <div id="noNotes">No Note Yet.</div>
       </div>
+      </Link>
+    )
+  }
+
+
+  if (noteList.length == 0) {
+    return (
+      <Link to={`/notes`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <div className="app-sidebar">
+        <div className="app-sidebar-header">
+            <h1>Notes</h1>
+            <button onClick={addNote}>&#43;</button>
+        </div>
+        <div id="noNotes">No Note Yet.</div>
+      </div>
+      </Link>
     );
   }
 

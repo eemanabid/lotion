@@ -144,9 +144,10 @@ button:hover {
   width: 70%;
   height: 100vh;
   line-height: 100vh;
-  text-align: center;
+  text-align: right;
   font-size: 1rem;
-  color: #999;
+  float: right;
+  color: black;
 }
 
 .app-main-note-edit {
@@ -289,6 +290,7 @@ input:focus{
   margin-left: -1000px;
   margin-top: 0px;
   font-size: medium;
+  font-family: inherit;
 }
 
 #ReactQuill .ql-toolbar { 
@@ -308,9 +310,10 @@ input:focus{
 
 #newNoteContent {
   font-size: medium;
-  margin-left: -460px;
-  margin-top: 170px;
+  margin-left: -465px;
+  margin-top: 212px;
   padding-right: 30px;
+  font-family: inherit;
 }
 
 

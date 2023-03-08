@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import ReactQuill from "react-quill";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen}) {
+function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, key}) {
   const [noteContent, setNoteContent] = useState("");
   const [date, setDate] = useState(Date.now());
   const [title, setTitle] = useState("");
@@ -49,9 +49,14 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen}) {
     setEditing(true);
   };
 
-  if (!activeNote) {
-    return <div className="no-active-note" style={mainStyle}>Select a note, or create a new one.</div>;
-  };
+
+  if(!activeNote){
+    return(
+    <Link to={`/notes`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <div className="no-active-note">Select a note, or create a new one.</div>
+      </Link>
+    )
+  }
 
   return (
     <>
@@ -90,13 +95,17 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen}) {
 
           <div id="rightTop">
             {editing ? (
+              <Link to={`/notes/${note.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <button onClick={handleEdit} id="editNote">
                 Edit
               </button>
+              </Link>
             ) : (
+              <Link to={`/notes/${note.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <button onClick={handleSaveNote}  id="saveNote">
                 Save
               </button>
+              </Link>
             )}
 
             <button onClick={() => {
