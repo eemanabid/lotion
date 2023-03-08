@@ -52,15 +52,23 @@ function App() {
   }
 
   const toggle = () => setIsOpen(!isOpen);
-  const [noteList, setNoteList] = useState(JSON.parse(localStorage.noteList) || []);
+  const [noteList, setNoteList] = useState(JSON.parse(localStorage.getItem("noteList")) || []);
   const [activeNote, setActiveNote] = useState(false);
   const [newNoteAdded, setNewNoteAdded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
+    if (!localStorage.noteList) {
+      localStorage.setItem("noteList", "[]");
+    }
+    setNoteList(JSON.parse(localStorage.noteList));
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("noteList", JSON.stringify(noteList));
   }, [noteList]);
+
 
   const navigate = useNavigate();
   
@@ -84,6 +92,7 @@ function App() {
             isOpen={isOpen}
           ></Sidebar>
         )}
+
         {noteList.map(
           (note) =>
             note.id === activeNote && (
