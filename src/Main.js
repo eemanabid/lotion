@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import ReactQuill from "react-quill";
 import { useNavigate, Link } from "react-router-dom";
 
-function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, key}) {
+function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, isOpen, key}) {
   const [noteContent, setNoteContent] = useState("");
   const [date, setDate] = useState(Date.now());
   const [title, setTitle] = useState("");
@@ -14,9 +14,14 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, ke
     width: isOpen ? "77%" : "100%",
   };
   const quillStyle = {
-    marginLeft: isOpen ? "40%" : "40%",
+    marginLeft: isOpen ? "40%" : "31%",
     marginTop: isOpen ? "0%" : "0%",
-    width: isOpen ? "77%" : "100%",
+    width: isOpen ? "77%" : "80%",
+  }
+  const savedStyle = {
+    marginLeft: isOpen ? "1.5%" : "1.75%",
+    marginTop: isOpen ? "-20%" : "-15.2%",
+    width: isOpen ? "100%" : "95%",
   }
 
   useEffect(() => {
@@ -34,7 +39,8 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, ke
 
   const handleEdit = () => {
     setEditing(false);
-    navigate(`/notes/${activeNote}/edit`); 
+    const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote.id);
+    navigate(`/notes/${activeNoteIndex + 1}/edit`);
   };
 
   const handleSaveNote = () => {
@@ -44,7 +50,8 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, ke
       date: date,
       body: noteContent,
     };
-    navigate(`/notes/${activeNote}`); 
+    const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote.id);
+    navigate(`/notes/${activeNoteIndex + 1}/edit`);
     saveNote(note);
     setEditing(true);
   };
@@ -119,9 +126,8 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, ke
               Delete
             </button>
           </div>
-        </div>
-
-        {!editing ? (
+          <div className="typing">
+          {!editing ? (
           <div id="noteEdit" style={quillStyle}>
             <ReactQuill id = "ReactQuill"
               placeholder="Your Note Here"
@@ -129,8 +135,9 @@ function Main({ saveNote, askDelete, getActiveNote, activeNote, note, isOpen, ke
               onChange={handleChange}
             ></ReactQuill>
           </div>
-        ) : (<div id="newNoteContent" dangerouslySetInnerHTML={{__html: noteContent}}></div>)}
-      
+        ) : (<div id="newNoteContent" style={savedStyle} dangerouslySetInnerHTML={{__html: noteContent}}></div>)}
+        </div> 
+        </div>
     </>
   );
 }

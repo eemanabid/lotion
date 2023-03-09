@@ -174,11 +174,11 @@ input:focus{
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: small;
-  width: 45%;
+  width: 25%;
   border-bottom: none;
-  padding: 20px;
-  top: 0px;
-  right: 0px;
+  padding: 23px;
+  top: 50px;
+  right: 485px;
   border: none;
   position: relative;
 }
@@ -287,20 +287,19 @@ input:focus{
 }*/
 #ReactQuill .ql-container {
   height: 71.5%;
-  margin-left: -1000px;
-  margin-top: 0px;
+  margin-left: -395px;
   font-size: medium;
   font-family: inherit;
 }
 
 #ReactQuill .ql-toolbar { 
-  margin-left: -1000px;
-  margin-top: 160px;
+  margin-top: -250px;
+  margin-left: -395px;
 }
 
 #ReactQuill{
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 80%;
   /*position: absolute;*/
   height: auto;
 }
@@ -310,10 +309,11 @@ input:focus{
 
 #newNoteContent {
   font-size: medium;
-  margin-left: -465px;
-  margin-top: 212px;
-  padding-right: 30px;
+  margin-top: -200px;
+  margin-left: 20px;
+  width: 1250px;
   font-family: inherit;
+  word-wrap: break-word;
 }
 
 
@@ -333,4 +333,5 @@ input:focus{
   margin-left: -15px;
   cursor: pointer;
 }
+
 

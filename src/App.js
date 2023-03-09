@@ -98,6 +98,7 @@ function App() {
             note.id === activeNote && (
               <Main
                 note={note}
+                noteList={noteList}
                 askDelete={askDelete}
                 getActiveNote={getActiveNote}
                 saveNote={saveNote}
