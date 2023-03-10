@@ -70,7 +70,7 @@ function Sidebar({noteList, addNote, activeNote, setActiveNote, newNoteAdded, is
 
         <div className="app-sidebar-notes">
           {noteList.map((note) => (
-            <Link to={`/notes/${note.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to={`/notes/${noteList.indexOf(note)+1}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div key={note.id} className={`app-sidebar-note ${note.id === activeNote && "active"}`} onClick={() => {setActiveNote(note.id);}}>
                 <div className="sidebar-note-title">
                   <strong>{note.title}</strong>

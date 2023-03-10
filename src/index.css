@@ -97,7 +97,7 @@ button:hover {
 
 .app-sidebar-notes {
   height: calc(100vh - 78px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .app-sidebar-note {
   padding: 25px;

@@ -24,8 +24,7 @@ function App() {
     localStorage.removeItem(activeNote.id);
     setNoteList(newNoteList);
     setActiveNote(newNoteList[0].id);
-    const firstNoteIndex = newNoteList.indexOf(newNoteList.find(note => note.id === newNoteList[0].id));
-    navigate(`/notes/${firstNoteIndex + 1}/edit`);
+    navigate(`/notes/${noteList.indexOf(newNoteList[0])+1}/edit`);
   };
   
 

@@ -40,7 +40,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
   const handleEdit = () => {
     setEditing(false);
     const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote);
-    navigate(`/notes/${activeNoteIndex + 1}/edit`);
+    navigate(`/notes/${noteList.indexOf(note)+1}/edit`);
   };
 
   const handleSaveNote = () => {
@@ -51,7 +51,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
       body: noteContent,
     };
     const activeNoteIndex = noteList.indexOf((note) => note.id === activeNote);
-    navigate(`/notes/${activeNoteIndex + 1}/edit`);
+    navigate(`/notes/${noteList.indexOf(note)+1}`);
     saveNote(note);
     setEditing(true);
   };
@@ -102,13 +102,13 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
 
           <div id="rightTop">
             {editing ? (
-              <Link to={`/notes/${note.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to={`/notes/${noteList.indexOf(note)+1}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <button onClick={handleEdit} id="editNote">
                 Edit
               </button>
               </Link>
             ) : (
-              <Link to={`/notes/${note.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to={`/notes/${noteList.indexOf(note)+1}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <button onClick={handleSaveNote}  id="saveNote">
                 Save
               </button>
