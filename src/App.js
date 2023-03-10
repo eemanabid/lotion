@@ -2,7 +2,7 @@ import { useState, useEffect, React } from "react";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate, Route, BrowserRouter, Navigate, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
@@ -107,6 +107,10 @@ function App() {
                 isOpen={isOpen}
               ></Main>
             )
+        )}
+
+        {(!activeNote) && (
+        <div className="no-active-note">Select a note, or create a new one.</div>
         )}
         
       </div>

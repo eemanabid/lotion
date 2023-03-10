@@ -73,7 +73,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
             <input
               type="text"
               id="title"
-              placeholder="Untitled Note"
+              placeholder=""
               value={title}
               onChange={handleTitleChange}
               autoFocus
@@ -82,7 +82,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
         <input
         type="text"
         id="title"
-        placeholder="Untitled Note"
+        placeholder=""
         value={title}
         onChange={handleTitleChange}
         autoFocus

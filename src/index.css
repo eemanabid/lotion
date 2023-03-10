@@ -143,10 +143,10 @@ button:hover {
   width: 70%;
   height: 100vh;
   line-height: 100vh;
-  text-align: right;
+  text-align: center;
+  margin-left: 200px;
   font-size: 1rem;
-  float: right;
-  color: black;
+  color: grey;
 }
 
 .app-main-note-edit {
