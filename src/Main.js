@@ -39,7 +39,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
 
   const handleEdit = () => {
     setEditing(false);
-    const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote.id);
+    const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote);
     navigate(`/notes/${activeNoteIndex + 1}/edit`);
   };
 
@@ -50,7 +50,7 @@ function Main({ noteList, saveNote, askDelete, getActiveNote, activeNote, note, 
       date: date,
       body: noteContent,
     };
-    const activeNoteIndex = noteList.findIndex((note) => note.id === activeNote.id);
+    const activeNoteIndex = noteList.indexOf((note) => note.id === activeNote);
     navigate(`/notes/${activeNoteIndex + 1}/edit`);
     saveNote(note);
     setEditing(true);
